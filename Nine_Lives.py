@@ -8,43 +8,52 @@ words3 = ['prince', 'topaz', 'pencil', 'market',
          'sheild', 'island']
 
 
+difficulty = input('Choose difficulty (type 1, 2, 3) : \n 1 Easy\n 2 Normal\n 3 Hard\n')
+difficulty = int(difficulty)
+x = 0
+total = [words, words2, words3]
+difficulty = difficulty - 1
+lives = 15-(difficulty * 3)
+difficulty = difficulty + 1
+secret_word = ''
+while True:
+    if x == difficulty:
+        x = x-1
+        secret = total[x]
+        secret_word = random.choice(secret)
+        break
+    x = x + 1
+clue = list('?' * len(secret_word))
+        
+        
+
+
 heart_symbol = u'\u2764'
 guessed_word_correctly = False
 
-def update_clue(guessed_letter, secret_word, clue):
+def update_clue(guessed_letter, secretword, clue):
     index = 0
     while index < len(secret_word):
         if guessed_letter == secret_word[index]:
             clue[index] = guessed_letter
         index = index + 1
         
-difficulty = input('Choose difficulty (type 1, 2, 3) : \n 1 Easy\n 2 Normal\n 3 Hard\n')
-difficulty = int(difficulty)
-
-if difficulty == 1:
-    lives = 15
-
-    secret_word = random.choice(words)
 
 
-elif difficulty == 2:
-    lives = 12
+
+
     
-    secret_word = random.choice(words2)
 
-else:
-    lives = 9
-    
-    secret_word = random.choice(words3)
 
-clue = list('?' * len(secret_word))
+        
+
 
 
 
 while lives > 0:
     print(clue)
     print('Lives left :' + heart_symbol * lives)
-    guess = input('Guess a letter or the whole word:  ')
+    guess = input('Guess a letter or the whole word:')
     
     if guess == secret_word:
         guessed_word_correctly = True
